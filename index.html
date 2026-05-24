@@ -2,64 +2,156 @@
 <html lang="ja">
 
 <head>
+
 <meta charset="UTF-8">
-<title>日语课文播放器</title>
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>新标日播放器</title>
 
 <style>
 
+/* ========================= */
+/* 页面 */
+/* ========================= */
+
 body{
+
     font-family: sans-serif;
-    padding: 30px;
-    line-height: 2.2;
+
+    padding: 20px;
+
+    line-height: 2;
+
+    background-color: #ffffff;
+
 }
 
-/* 标题区域 */
+/* ========================= */
+/* 顶部导航 */
+/* ========================= */
+
+.topNav{
+
+    margin-bottom: 20px;
+
+    font-size: 18px;
+
+}
+
+.topNav a{
+
+    margin-right: 10px;
+
+    text-decoration: none;
+
+}
+
+/* ========================= */
+/* 标题 */
+/* ========================= */
+
+h1{
+
+    color: darkblue;
+
+}
+
+h2{
+
+    color: darkred;
+
+    margin-top: 50px;
+
+}
+
+/* ========================= */
+/* 课文模块 */
+/* ========================= */
+
+.lessonBlock{
+
+    margin-top: 40px;
+
+}
+
+/* ========================= */
+/* 标题 + 播放器 */
+/* ========================= */
 
 .titleRow{
 
     display: flex;
 
+    flex-wrap: wrap;
+
     align-items: center;
 
-    gap: 20px;
+    gap: 15px;
 
 }
 
-/* 句子 */
+/* ========================= */
+/* 音频播放器 */
+/* ========================= */
 
-.sentence{
+audio{
 
-    font-size: 24px;
+    max-width: 100%;
+
+}
+
+/* ========================= */
+/* 每一行 */
+/* ========================= */
+
+.line{
 
     margin-top: 15px;
 
+    font-size: 24px;
+
     cursor: pointer;
 
-    padding: 8px;
+}
 
-    border-radius: 10px;
+/* ========================= */
+/* 语块 */
+/* ========================= */
 
-    transition: 0.3s;
+.seg{
+
+    display: inline-block;
+
+    white-space: nowrap;
+
+    padding: 2px 4px;
+
+    border-radius: 6px;
+
+    transition: 0.2s;
 
 }
 
-.sentence:hover{
+/* ========================= */
+/* 高亮 */
+/* ========================= */
 
-    background-color: #f5f5f5;
-
-}
-
-/* 实时字幕高亮 */
-
-.highlight{
+.active{
 
     color: red;
 
     font-weight: bold;
 
+    background-color: #fff0f0;
+
 }
 
+/* ========================= */
 /* 单词 */
+/* ========================= */
 
 .word{
 
@@ -75,7 +167,9 @@ body{
 
 }
 
+/* ========================= */
 /* 表格 */
+/* ========================= */
 
 table{
 
@@ -83,60 +177,90 @@ table{
 
     width: 100%;
 
-    margin-top: 15px;
+    margin-top: 20px;
 
 }
 
-th, td{
+td,th{
 
     border: 1px solid gray;
 
-    padding: 12px;
+    padding: 10px;
 
     text-align: center;
 
 }
 
-h1{
+/* ========================= */
+/* 手机适配 */
+/* ========================= */
 
-    color: darkblue;
+@media(max-width:600px){
 
-}
+    .line{
 
-h2{
+        font-size: 20px;
 
-    color: darkred;
+    }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<h1>第1課  小李是中国人</h1>
+<!-- ========================= -->
+<!-- 顶部 -->
+<!-- ========================= -->
 
-<div class="titleRow">
+<h1>新标日播放器</h1>
 
-<h2>基本課文</h2>
+<div class="topNav">
 
-<audio id="textAudio" controls>
-    <source src="Audio/Text_1.mp3" type="audio/mpeg">
-</audio>
+跳转到课文
+
+<a href="#">1</a>
+<a href="#">2</a>
+<a href="#">3</a>
+<a href="#">4</a>
+...
+<a href="#">28</a>
 
 </div>
 
-<!-- 第一行 -->
+<hr>
 
-<div class="sentence" onclick="jumpTo(4)">
+<!-- ========================= -->
+<!-- 课文 -->
+<!-- ========================= -->
 
-<span id="t1a">
+<h2>课文</h2>
+
+<div class="lessonBlock">
+
+</div>
+
+<div
+class="line"
+onclick="jump('audio2',4)">
+
+<span
+class="seg"
+data-audio="audio2"
+data-start="5"
+data-end="6">
+
 第1課
+
 </span>
 
-　
-
-<span id="t1b">
+<span
+class="seg"
+data-audio="audio2"
+data-start="6"
+data-end="9">
 
 <ruby>
 李<rt>り</rt>
@@ -144,7 +268,8 @@ h2{
 さんは
 
 <ruby>
-中国人<rt>ちゅうごくじん</rt>
+中国人
+<rt>ちゅうごくじん</rt>
 </ruby>
 
 です
@@ -153,13 +278,43 @@ h2{
 
 </div>
 
-<!-- 第二行 -->
+</div>
 
-<div class="sentence" onclick="jumpTo(11)">
+<!-- ========================= -->
+<!-- 基本课文1 -->
+<!-- ========================= -->
+
+<div class="lessonBlock">
+
+<div class="titleRow">
+
+<h3>基本课文（1）</h3>
+
+<audio
+id="audio2"
+controls>
+
+<source
+src="Audio/L1/Text_1.mp3"
+type="audio/mpeg">
+
+</audio>
+
+</div>
+
+<!-- 第一句 -->
+
+<div
+class="line"
+onclick="jump('audio2',12)">
 
 1.
 
-<span id="t2a">
+<span
+class="seg"
+data-audio="audio2"
+data-start="12"
+data-end="13.5">
 
 <ruby>
 李<rt>り</rt>
@@ -168,12 +323,15 @@ h2{
 
 </span>
 
-　
-
-<span id="t2b">
+<span
+class="seg"
+data-audio="audio2"
+data-start="13.5"
+data-end="15">
 
 <ruby>
-中国人<rt>ちゅうごくじん</rt>
+中国人
+<rt>ちゅうごくじん</rt>
 </ruby>
 
 です。
@@ -182,13 +340,19 @@ h2{
 
 </div>
 
-<!-- 第三行 -->
+<!-- 第二句 -->
 
-<div class="sentence" onclick="jumpTo(15)">
+<div
+class="line"
+onclick="jump('audio2',17)">
 
 2.
 
-<span id="t3a">
+<span
+class="seg"
+data-audio="audio2"
+data-start="17"
+data-end="19">
 
 <ruby>
 森<rt>もり</rt>
@@ -197,30 +361,927 @@ h2{
 
 </span>
 
-　
-
-<span id="t3b">
+<span
+class="seg"
+data-audio="audio2"
+data-start="19"
+data-end="20.2">
 
 <ruby>
-学生<rt>がくせい</rt>
+学生
+<rt>がくせい</rt>
 </ruby>
 
-ではありません。
+では
+
+</span>
+
+<span
+class="seg"
+data-audio="audio2"
+data-start="20.2"
+data-end="21">
+ありません。
 
 </span>
 
 </div>
 
-<!-- 单词 -->
+<!-- 第三句 -->
 
-<h2>単語</h2>
+<div
+class="line"
+onclick="jump('audio2',23)">
+
+3.
+
+<span
+class="seg"
+data-audio="audio2"
+data-start="23.5"
+data-end="24.8">
+
+<ruby>
+林<rt>はやし</rt>
+</ruby>
+さんは
+
+</span>
+
+<span
+class="seg"
+data-audio="audio2"
+data-start="24.8"
+data-end="26.5">
+
+<ruby>
+日本人
+<rt>にほんじん</rt>
+</ruby>
+
+ですか。
+
+</span>
+
+</div>
+
+<!-- 第四句 -->
+
+<div
+class="line"
+onclick="jump('audio2',29)">
+
+4.
+
+<span
+class="seg"
+data-audio="audio2"
+data-start="29"
+data-end="30.5">
+
+<ruby>
+李<rt>り</rt>
+</ruby>
+さんは
+
+</span>
+
+<span
+class="seg"
+data-audio="audio2"
+data-start="30.5"
+data-end="33">
+
+JC企画の
+社員です。
+
+</span>
+
+</div>
+
+</div>
+
+<!-- ========================= -->
+<!-- 基本课文2 -->
+<!-- ========================= -->
+
+<div class="lessonBlock">
+
+<div class="titleRow">
+
+<h3>基本课文（2）</h3>
+
+<audio
+id="audio3"
+controls>
+
+<source
+src="Audio/L1/Text_2.mp3"
+type="audio/mpeg">
+
+</audio>
+
+</div>
+
+<!-- A -->
+
+<div
+class="line"
+onclick="jump('audio3',1)">
+
+A
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="1"
+data-end="2.5">
+
+わたしは
+
+</span>
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="2.5"
+data-end="3.5">
+
+<ruby>
+李<rt>り</rt>
+</ruby>
+です。
+
+</span>
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="3.5"
+data-end="5."2>
+
+<ruby>
+    小野<rt>おの</rt>
+    さんですか。
+</ruby>
+
+
+</div>
+
+<div
+class="line"
+onclick="jump('audio3',5.3)">
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="5.5"
+data-end="6.3">
+
+はい、
+
+</span>
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="6.3"
+data-end="7.5">
+
+そうです。
+
+</span>
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="7.5"
+data-end="8.5">
+
+<ruby>
+    小野<rt>おの</rt>
+    です。
+</ruby>
+
+</span>
+
+</div>
+
+<!-- B -->
+
+<div
+class="line"
+onclick="jump('audio3',10)">
+
+B
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="11"
+data-end="12.2">
+
+<ruby>
+    森<rt>もり</rt>
+    </ruby>
+    さんは
+
+</span>
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="12.2"
+data-end="13.5">
+
+<ruby>
+    学生<rt>がくせい</rt>
+    ですか。
+</ruby>
+
+</span>
+
+</div>
+
+ <div
+class="line"
+onclick="jump('audio3',13.8)">
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="13.8"
+data-end="14.3">
+
+<ruby>
+	いいえ、
+</ruby>
+
+</span>
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="15"
+data-end="15.7">
+
+<ruby>
+	学生<rt>がくせい</rt>
+    では
+</ruby>
+
+</span>
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="15.7"
+data-end="16.7">
+
+<ruby>
+	ありません。
+</ruby>
+
+</span>
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="17.2"
+data-end="18.3">
+
+<ruby>
+	会社員<rt>かいしゃいん</rt>
+    です。
+</ruby>
+
+</span>
+
+</div>
+
+<!-- C -->
+
+<div
+class="line"
+onclick="jump('audio3',21)">
+
+C
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="21.5"
+data-end="23.5">
+
+<ruby>
+    吉田<rt>よしだ</rt>
+    さん
+    ですか
+</ruby>
+
+</span>
+
+</div>
+
+<div
+class="line"
+onclick="jump('audio3',24)">
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="24.2"
+data-end="25">
+
+<ruby>
+	いいえ、
+</ruby>
+
+</span>
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="25"
+data-end="26">
+
+<ruby>
+	ちがいます。
+</ruby>
+
+</span>
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="26.5"
+data-end="27.2">
+
+<ruby>
+	森<rt>もり</rt>
+    です。
+</ruby>
+
+</span>
+
+</div>
+
+
+<!-- D -->
+
+ <div
+class="line"
+onclick="jump('audio3',30)">
+
+D
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="30.5"
+data-end="31.8">
+
+<ruby>
+	李<rt>り</rt>
+    さんは
+</ruby>
+
+</span>
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="31.8"
+data-end="33">
+
+<ruby>
+	JC<rt>ジェーシー</rt>
+    企画<rt>きかく</rt>
+    の
+</ruby>
+
+</span>
+
+<span
+class="seg"
+data-audio="audio3"
+data-start="33"
+data-end="33.8">
+
+<ruby>
+	社員<rt>しゃいん</rt>
+    ですか。
+</ruby>
+
+</span>
+
+</div>
+
+
+ <div
+class="line"
+onclick="jump('audio3',34.2)">
+
+<span 
+class=seg 
+data-audio=audio3
+data-start=34.5
+data-end=35>
+<ruby>
+   はい、
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio3
+data-start=35
+data-end=36>
+<ruby>
+   そうです。
+</ruby>
+
+</span>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- 应用课文 -->
+<!-- ========================= -->
+
+<div class="lessonBlock">
+
+<div class="titleRow">
+
+<h3>应用课文</h3>
+
+<audio
+id="audio4"
+controls>
+
+<source
+src="Audio/L1/Text_3.mp3"
+type="audio/mpeg">
+
+</audio>
+
+</div>
+
+<p>
+
+飞机准点到达成田机场。小野绿和同事森健太郎在候机大厅等着小李。
+小李办完入境手续，到大厅后，看到写着“李秀麗様”字样的牌子。
+<br>
+（小李朝着牌子的方向走去）
+</p>
+
+<!-- 李 -->
+
+<div
+class="line"
+onclick="jump('audio4',22.5)">
+
+李：
+
+<span
+class="seg"
+data-audio="audio4"
+data-start="22.5"
+data-end="24">
+
+<ruby>
+    JC<rt>ジェーシー</rt>
+    企画<rt>きかく</rt>
+    の
+</ruby>
+
+</span>
+
+<span
+class="seg"
+data-audio="audio4"
+data-start="24"
+data-end="25">
+
+<ruby>
+    小野<rt>おの</rt>
+    さんですか。
+</ruby>
+
+</span>
+
+</div>
+
+<!-- 小野 -->
+
+<div
+class="line"
+onclick="jump('audio4',25.5)">
+
+小野：
+
+<span
+class="seg"
+data-audio="audio4"
+data-start="25.7"
+data-end="26">
+
+はい、
+
+</span>
+
+<span
+class="seg"
+data-audio="audio4"
+data-start="26"
+data-end="26.8">
+
+<ruby>
+    小野<rt>おの</rt>
+    です。
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=26.8
+data-end=28.5>
+<ruby>
+   李秀麗<rt>りしゅうれい</rt>
+   さんですか。
+</ruby>
+
+</span>
+
+</div>
+
+<!-- 李 -->
+
+<div
+class="line"
+onclick="jump('audio4',29)">
+
+李：
+
+<span
+class="seg"
+data-audio="audio4"
+data-start="29.5"
+data-end="30">
+
+はい、
+
+</span>
+
+<span
+class="seg"
+data-audio="audio4"
+data-start="30"
+data-end="31.5">
+
+<ruby>
+    李秀麗<rt>りしゅうれい</rt>
+    です。
+</ruby>
+
+</span>
+
+</div>
+
+ <div
+class="line"
+onclick="jump('audio4',31.5)">
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=31.5
+data-end=32.5>
+<ruby>
+   はじめまして。
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=32.5
+data-end=35>
+<ruby>
+   どうぞ  よろしく  お願いします。
+</ruby>
+
+</span>
+
+</div>
+
+ <div
+class="line"
+onclick="jump('audio4',35)">
+
+小野：
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=35.3
+data-end=36.2>
+<ruby>
+   はじめまして、
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=36.2
+data-end=37.5>
+<ruby>
+   小野緑<rt>おのみどり</rt>
+   です。
+</ruby>
+
+</span>
+
+</div>
+
+<p>
+（森在一旁插话）
+</p>
+
+ <div
+class="line"
+onclick="jump('audio4',39)">
+
+森：
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=39.5
+data-end=40>
+<ruby>
+   李<rt>り</rt>
+   さん、
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=40
+data-end=41>
+<ruby>
+   こんにちは。
+</ruby>
+
+</span>
+
+</div>
+
+ <div
+class="line"
+onclick="jump('audio4',41.5)">
+
+李：
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=42
+data-end=43.7>
+<ruby>
+   吉田さんですか。
+</ruby>
+
+</span>
+
+</div>
+
+ <div
+class="line"
+onclick="jump('audio3',43.5)">
+
+森：
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=44
+data-end=45>
+<ruby>
+   いいえ、
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=45
+data-end=46.4>
+<ruby>
+   わたしは
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=46.4
+data-end=46.8>
+<ruby>
+   吉田<rt>よしだ</rt>
+   じゃ   
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=46.8
+data-end=47.6>
+<ruby>
+   ありません。
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=48
+data-end=48.6>
+<ruby>
+   森<rt>もり</rt>
+   です。
+</ruby>
+
+</span>
+
+</div>
+
+ <div
+class="line"
+onclick="jump('audio4',48.8)">
+
+李：
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=49
+data-end=50>
+<ruby>
+   あっ、
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=50
+data-end=51>
+<ruby>
+   森<rt>もり</rt>
+   さんですか。
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=51.4
+data-end=52>
+<ruby>
+   どうも
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=52
+data-end=52.5>
+<ruby>
+   すみません。
+</ruby>
+
+</span>
+
+</div>
+
+ <div
+class="line"
+onclick="jump('audio4',52.8)">
+
+森：
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=52.8
+data-end=53.5>
+<ruby>
+   いいえ、
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=54
+data-end=55.5>
+<ruby>
+   どうぞ  よろしく。
+</ruby>
+
+</span>
+
+</div>
+
+ <div
+class="line"
+onclick="jump('audio4',55.5)">
+
+李：
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=56
+data-end=57.5>
+<ruby>
+   李秀麗<rt>りしゅうれい</rt>
+   です。
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=57.5
+data-end=58.2>
+<ruby>
+   こちらこそ、
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=58.2
+data-end=59>
+<ruby>
+   よろしく 
+</ruby>
+
+</span>
+
+<span 
+class=seg 
+data-audio=audio4
+data-start=59
+data-end=60>
+   お
+<ruby>
+   願<rt>ねが</rt>
+   いします。
+</ruby>
+
+</span>
+
+</div>
+
+<!-- ========================= -->
+<!-- 单词 -->
+<!-- ========================= -->
+
+<h2>单词</h2>
 
 <table>
 
 <tr>
-<th>単語</th>
-<th>読み</th>
-<th>発音</th>
+
+<th>单词</th>
+<th>读音</th>
+<th>音标</th>
+
 </tr>
 
 <tr>
@@ -229,10 +1290,17 @@ h2{
 
 <span
 class="word"
-onclick="playWord('Audio/1.mp3')">
+onclick="
+playWord(
+'Audio/L1/1.mp3'
+)
+">
 
 <ruby>
-中国人<rt>ちゅうごくじん</rt>
+中国人
+<rt>
+ちゅうごくじん
+</rt>
 </ruby>
 
 </span>
@@ -251,14 +1319,21 @@ Tyuugokùziɴ
 
 </table>
 
+<!-- ========================= -->
+<!-- JavaScript -->
+<!-- ========================= -->
+
 <script>
 
-const audio =
-document.getElementById("textAudio");
+/* ========================= */
+/* 跳转 */
+/* ========================= */
 
-/* 点击句子跳转 */
+function jump(audioId,time){
 
-function jumpTo(time){
+    const audio =
+    document
+    .getElementById(audioId);
 
     audio.currentTime = time;
 
@@ -266,141 +1341,88 @@ function jumpTo(time){
 
 }
 
-/* 单词发音 */
+/* ========================= */
+/* 单词播放 */
+/* ========================= */
 
 function playWord(file){
 
-    const wordAudio =
-    new Audio(file);
-
-    wordAudio.play();
+    new Audio(file).play();
 
 }
 
-/* 清除所有高亮 */
+/* ========================= */
+/* 获取全部播放器 */
+/* ========================= */
 
-function clearHighlight(){
+const audios =
+document.querySelectorAll("audio");
 
-    const all =
-    document.querySelectorAll("span");
+/* ========================= */
+/* 实时字幕 */
+/* ========================= */
 
-    all.forEach(item=>{
+audios.forEach(audio=>{
 
-        item.classList.remove("highlight");
+    audio.addEventListener(
+    "timeupdate",
+
+    ()=>{
+
+        const t =
+        audio.currentTime;
+
+        const id =
+        audio.id;
+
+        /* 清除旧高亮 */
+
+        document
+        .querySelectorAll(
+        `.seg[data-audio="${id}"]`
+        )
+
+        .forEach(seg=>{
+
+            seg.classList
+            .remove("active");
+
+        });
+
+        /* 添加新高亮 */
+
+        document
+        .querySelectorAll(
+        `.seg[data-audio="${id}"]`
+        )
+
+        .forEach(seg=>{
+
+            const start =
+            parseFloat(
+            seg.dataset.start
+            );
+
+            const end =
+            parseFloat(
+            seg.dataset.end
+            );
+
+            if(
+                t >= start &&
+                t < end
+            ){
+
+                seg.classList
+                .add("active");
+
+            }
+
+        });
 
     });
 
-}
-
-/* 实时字幕 */
-
-audio.addEventListener("timeupdate", ()=>{
-
-    const t = audio.currentTime;
-
-    clearHighlight();
-
-    /* 第一行  第N课 ...... */
-
-    if(t >= 5 && t < 6){
-
-        document
-        .getElementById("t1a")
-        .classList
-        .add("highlight");
-
-    }
-
-    if(t >= 6 && t < 12){
-
-        document
-        .getElementById("t1b")
-        .classList
-        .add("highlight");
-
-    }
-
-    /* 第二行  1. */
-
-    if(t >= 12 && t < 13.5){
-
-        document
-        .getElementById("t2a")
-        .classList
-        .add("highlight");
-
-    }
-
-    if(t >= 13.5 && t < 17){
-
-        document
-        .getElementById("t2b")
-        .classList
-        .add("highlight");
-
-    }
-
-    /* 第三行 2. */
-
-    if(t >= 17 && t < 19){
-
-        document
-        .getElementById("t3a")
-        .classList
-        .add("highlight");
-
-    }
-
-    if(t >= 19 && t < 21){
-
-        document
-        .getElementById("t3b")
-        .classList
-        .add("highlight");
-
-    }
-
-    /* 第四行 3. */
-
-    if(t >= 22.5 && t < 24.6){
-
-        document
-        .getElementById("t4a")
-        .classList
-        .add("highlight");
-
-    }    
-    
-    if(t >= 24.8 && t < 26.5){
-
-        document
-        .getElementById("t4b")
-        .classList
-        .add("highlight");
-
-    }
-    
-    /* 第五行 4. */
-
-    if(t >= 29.5 && t < 30.5){
-
-        document
-        .getElementById("t5b")
-        .classList
-        .add("highlight");
-
-    }
-
-    if(t >= 30.5 && t < 33.5){
-
-        document
-        .getElementById("t3b")
-        .classList
-        .add("highlight");
-
-    }
 });
-
 
 </script>
 
